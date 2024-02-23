@@ -1,8 +1,17 @@
 # Problema-3-Sistemas-Digitais-Breakout-Game
-Problema 3 da disciplina de sistemas digitais 
+Problema 3 da disciplina de sistemas digitais - Breakout Game em C
+
+## Equipe de Desenvolvimento
+- Antonio
+- Cláudia
+- Luis
+- Nirvan
+
+## Tutor
+- Thiago Jesus
 
 ## Introdução
-Este é o README do Projeto X, um jogo desenvolvido pela equipe Nirvan, Nicassio, Luis e Cláudia. O Projeto X é um jogo de estilo arcade, inspirado em jogos clássicos como Pong e Breakout.
+
 
 ## Recursos
 O Projeto X apresenta os seguintes recursos:
