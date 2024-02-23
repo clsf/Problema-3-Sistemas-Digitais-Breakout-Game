@@ -27,7 +27,19 @@ A biblioteca `accel.h` é responsável por lidar com aceleração e movimentaç�
 A biblioteca `KEY.h` oferece suporte para lidar com eventos de teclado. Consulte a documentação para entender como mapear e responder a teclas específicas.
 
 ## Solução Geral
-Esta seção abrange a arquitetura geral do projeto, incluindo a estrutura principal (main) e pode incluir um diagrama para proporcionar uma visão geral clara da organização do código.
+    <div align="center">
+    <img src="/img/main.PNG" alt="Diagrama da main">
+     <p>
+       Diagrama da main
+      </p>
+  </div>
+Para o correto funcionamento do jogo, é essencial entender o papel central desempenhado pelo bloco de código "main". Este bloco é responsável por criar e gerenciar elementos cruciais, como blocos, paredes, bola, barra do jogador e mensagens. Adicionalmente, realiza as configurações iniciais do botão e do acelerômetro da placa, além de estabelecer a conexão com o monitor por meio da interface VGA.
+
+Observando o diagrama, nota-se que o jogo só é iniciado quando o usuário pressiona o botão indicado pela mensagem na tela. Durante a inicialização, são verificadas colisões com as paredes e a barra do jogador para determinar a trajetória subsequente da bola. Adicionalmente, verifica-se se a bola colidiu com blocos ativos na tela. Em caso afirmativo, a pontuação é atualizada, e o bloco correspondente é desativado. É validado também, o acionamento do botão após o inicio, significando que o usuário pausou o jogo.
+
+Outro ponto importante é a verificação da posição da bola em relação à barra do jogador (paddle). Se a bola estiver abaixo da barra, uma mensagem de "game over" é exibida, e o jogo reinicia após o usuário pressionar o botão correspondente. A pontuação também é verificada; atingir uma pontuação igual à quantidade de blocos resulta na vitória. Nesse caso, uma mensagem de vitória é exibida, e o jogo reinicia após o usuário pressionar o botão.
+
+Após todas essas verificações, a tela é continuamente atualizada para refletir visualmente as alterações no estado do jogo. Esse ciclo de verificação e atualização garante uma experiência dinâmica e interativa para o jogador, proporcionando um fluxo suave e envolvente durante o jogo.
 
 ## Paddle (Movimento) (por Nirvan)
 Descreve como o movimento do paddle é implementado, incluindo as funções disponíveis e como integrá-las ao jogo.
@@ -47,6 +59,8 @@ Detalhes sobre como a detecção e o tratamento de colisões são implementados 
 ## Botões (Pause, Continue, Restart) (por Nicassio)
 Explica como os botões de pause, continue e restart são implementados e como eles interagem com o fluxo do jogo.
 
-## Textos (por Cláudia)
-Esta seção cobre a exibição de textos no jogo, incluindo pontuações, mensagens e outros elementos de texto.
+## Textos (Mensagens e Pontuação)
+As mensagens no jogo são geradas por meio da estrutura mensagem, que engloba os atributos x, y, mensagem e ativa. As variáveis x e y indicam a posição na tela em que a mensagem será exibida, enquanto a variável mensagem armazena a informação a ser apresentada. O atributo ativa determina se a mensagem deve ser exibida ou não. A lógica de exibição é controlada pelo método "exibirMensagem", que verifica a condição de ativação antes de utilizar a função para escrever a mensagem na tela.
+
+Quanto à pontuação, é gerenciada pela estrutura pontuação, que possui os atributos x, y e pontuação. Os atributos x e y seguem a mesma lógica da estrutura mensagem, indicando a posição na tela. A variável pontuação representa os pontos acumulados pelo usuário. Dois métodos são incorporados a essa estrutura: atualizarPontuação e exibirPontuação. O método atualizarPontuação incrementa os pontos do usuário sempre que é chamado, enquanto o método exibirPontuação atualiza a mensagem da pontuação na tela. Essa abordagem permite um acompanhamento dinâmico dos pontos durante o jogo.
 
