@@ -14,6 +14,12 @@ O Projeto X apresenta os seguintes recursos:
 Instruções sobre como baixar, compilar e executar o jogo podem ser encontradas nesta seção. Certifique-se de revisar as dependências e os pré-requisitos antes de iniciar.
 
 ## Libs intelfpgaup
+
+Para estabelecer a comunicação entre o software e o hardware, utilizamos drivers que atuam como uma ponte, utilizando a biblioteca intelfpga. Esses drivers consistem em um conjunto de rotinas ou funções que possibilitam a interação do programa com os componentes específicos da FPGA DE1-SoC, como o acelerômetro, botões e vídeo. Essa abordagem simplifica o processo de leitura e escrita nos registradores, assim como nas configurações desses componentes.
+
+Através do controle proporcionado pelos drivers, conseguimos gerenciar eficientemente os periféricos da FPGA. Isso inclui ajustar parâmetros e iniciar operações específicas fundamentais para o funcionamento do jogo.
+
+A biblioteca "intelfpgaup" desempenhou um papel crucial, servindo como a ferramenta necessária para abstrair muitos detalhes complexos. Essa abstração evitou a necessidade de realizar configurações, leituras e inicializações dos periféricos em níveis mais baixos. Dessa forma, a implementação do jogo foi simplificada e tornada mais acessível, permitindo que os desenvolvedores se concentrassem nas lógicas do jogo em si, em vez de detalhes específicos da FPGA.
 ### Drive e Controle
 A biblioteca `intelfpgaup` é fundamental para o funcionamento do jogo. Ela gerencia os drivers e controles essenciais. Certifique-se de entender como integrar e utilizar essas funcionalidades em seu código.
 
