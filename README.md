@@ -27,12 +27,12 @@ A biblioteca `accel.h` é responsável por lidar com aceleração e movimentaç�
 A biblioteca `KEY.h` oferece suporte para lidar com eventos de teclado. Consulte a documentação para entender como mapear e responder a teclas específicas.
 
 ## Solução Geral
-    <div align="center">
-    <img src="/img/main.PNG" alt="Diagrama da main">
+<div align="center">
+    <img src="/img/mainBreakout.drawio.png" alt="Diagrama da main">
      <p>
        Diagrama da main
       </p>
-  </div>
+</div>
 Para o correto funcionamento do jogo, é essencial entender o papel central desempenhado pelo bloco de código "main". Este bloco é responsável por criar e gerenciar elementos cruciais, como blocos, paredes, bola, barra do jogador e mensagens. Adicionalmente, realiza as configurações iniciais do botão e do acelerômetro da placa, além de estabelecer a conexão com o monitor por meio da interface VGA.
 
 Observando o diagrama, nota-se que o jogo só é iniciado quando o usuário pressiona o botão indicado pela mensagem na tela. Durante a inicialização, são verificadas colisões com as paredes e a barra do jogador para determinar a trajetória subsequente da bola. Adicionalmente, verifica-se se a bola colidiu com blocos ativos na tela. Em caso afirmativo, a pontuação é atualizada, e o bloco correspondente é desativado. É validado também, o acionamento do botão após o inicio, significando que o usuário pausou o jogo.
