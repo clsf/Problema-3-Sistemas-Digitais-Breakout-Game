@@ -1,8 +1,17 @@
 # Problema-3-Sistemas-Digitais-Breakout-Game
-Problema 3 da disciplina de sistemas digitais 
+Problema 3 da disciplina de sistemas digitais - Breakout Game em C
+
+## Equipe de Desenvolvimento
+- Antonio
+- Cláudia
+- Luis
+- Nirvan
+
+## Tutor
+- Thiago Jesus
 
 ## Introdução
-Este é o README do Projeto X, um jogo desenvolvido pela equipe Nirvan, Nicassio, Luis e Cláudia. O Projeto X é um jogo de estilo arcade, inspirado em jogos clássicos como Pong e Breakout.
+
 
 ## Recursos
 O Projeto X apresenta os seguintes recursos:
@@ -14,9 +23,12 @@ O Projeto X apresenta os seguintes recursos:
 Instruções sobre como baixar, compilar e executar o jogo podem ser encontradas nesta seção. Certifique-se de revisar as dependências e os pré-requisitos antes de iniciar.
 
 ## Libs intelfpgaup
-### Drive e Controle
-A biblioteca `intelfpgaup` é fundamental para o funcionamento do jogo. Ela gerencia os drivers e controles essenciais. Certifique-se de entender como integrar e utilizar essas funcionalidades em seu código.
 
+Para estabelecer a comunicação entre o software e o hardware, utilizamos drivers que atuam como uma ponte, utilizando a biblioteca intelfpga. Esses drivers consistem em um conjunto de rotinas ou funções que possibilitam a interação do programa com os componentes específicos da FPGA DE1-SoC, como o acelerômetro, botões e vídeo. Essa abordagem simplifica o processo de leitura e escrita nos registradores, assim como nas configurações desses componentes.
+
+Através do controle proporcionado pelos drivers, conseguimos gerenciar eficientemente os periféricos da FPGA. Isso inclui ajustar parâmetros e iniciar operações específicas fundamentais para o funcionamento do jogo.
+
+A biblioteca "intelfpgaup" desempenhou um papel crucial, servindo como a ferramenta necessária para abstrair muitos detalhes complexos. Essa abstração evitou a necessidade de realizar configurações, leituras e inicializações dos periféricos em níveis mais baixos. Dessa forma, a implementação do jogo foi simplificada e tornada mais acessível, permitindo o foco nas lógicas do jogo em si, em vez de detalhes específicos da FPGA.
 ### `video.h` (por Luis)
 Esta biblioteca trata das operações relacionadas à exibição de vídeo. Consulte a documentação para obter informações detalhadas sobre como utilizar as funções disponíveis.
 
