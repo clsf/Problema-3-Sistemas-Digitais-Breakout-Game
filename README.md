@@ -28,7 +28,7 @@ Para estabelecer a comunicação entre o software e o hardware, utilizamos drive
 
 Através do controle proporcionado pelos drivers, conseguimos gerenciar eficientemente os periféricos da FPGA. Isso inclui ajustar parâmetros e iniciar operações específicas fundamentais para o funcionamento do jogo.
 
-A biblioteca "intelfpgaup" desempenhou um papel crucial, servindo como a ferramenta necessária para abstrair muitos detalhes complexos. Essa abstração evitou a necessidade de realizar configurações, leituras e inicializações dos periféricos em níveis mais baixos. Dessa forma, a implementação do jogo foi simplificada e tornada mais acessível, permitindo que os desenvolvedores se concentrassem nas lógicas do jogo em si, em vez de detalhes específicos da FPGA.
+A biblioteca "intelfpgaup" desempenhou um papel crucial, servindo como a ferramenta necessária para abstrair muitos detalhes complexos. Essa abstração evitou a necessidade de realizar configurações, leituras e inicializações dos periféricos em níveis mais baixos. Dessa forma, a implementação do jogo foi simplificada e tornada mais acessível, permitindo o foco nas lógicas do jogo em si, em vez de detalhes específicos da FPGA.
 ### `video.h` (por Luis)
 Esta biblioteca trata das operações relacionadas à exibição de vídeo. Consulte a documentação para obter informações detalhadas sobre como utilizar as funções disponíveis.
 
