@@ -11,7 +11,7 @@ Problema 3 da disciplina de sistemas digitais - Breakout Game em C
 - Thiago Jesus
 
 ## Introdução
-O projeto foi baseado no desenvolvimento do Jogo "Breakout", utilizando como plataforma o DE1-Soc, este desafio que visa o aprendizado, com o a obtenção do conhecimento para programar na linguagem C para um processador que possui a arquitetura ARM.Aliado ao fato de incentivar a utilização das interfaces presente no kit FPGA DE1-Soc, como os botões e o acelerômetro, que servirão como controles para o jogo. 
+O projeto foi baseado no desenvolvimento do Jogo "Breakout", utilizando como plataforma o DE1-Soc, este desafio que visa o aprendizado, com a obtenção do conhecimento para programar na linguagem C para um processador que possui a arquitetura ARM.Aliado ao fato de incentivar a utilização das interfaces presente no kit FPGA DE1-Soc, como os botões e o acelerômetro, que servirão como controles para o jogo. 
 
 O Desenvolvimento do jogo foi feito com determinados requisitos.Ser implementado exclusivamente em linguagem C utilizando apenas os componentes disponíveis na placa DE1-SoC, Utilizando a interface VGA para Visualização através de um monitor CRT. 
 
@@ -42,7 +42,7 @@ A biblioteca "intelfpgaup" desempenhou um papel crucial, servindo como a ferrame
 ### `video.h` (por Luis)
 
 
-Para utilização do [monitor](#monitor), como interface de saida do projeto, atraves de u mcabo VGA conectado a DE1-SoC foi utilizado uma biblioteca desenvolvida em c *intelfpgaup/video.h* e um drive, ambos disponibilizados pela <a href="https://fpgacademy.org/courses.html">FPGAcademy</a>. O drive usa o arquivo */dev/video* para se comunicar, ao lê-lo é retornado uma *string* de caracteres "ccc rrr", na qual *ccc* é o número de colunas na tela VGA, e *rrr* é o número de linhas. Além disso o drive tem suporte aos seguintes comandos escritos no arquivo, *clear* e *pixel x,y cor*. O comando clear deve apagar a tela VGA definindo todos os pixels no buffer de pixels para a cor 0 (preto). O comando pixel deve definir o pixel na tela VGA nas coordenadas (x, y) para o valor da cor. A biblioteca trabalha em cima do drive, fazendo uso dessas funções básicas para fazer funções mais complexas.
+Para utilização do [monitor](#monitor), como interface de saida do projeto, atraves de um cabo VGA conectado a DE1-SoC foi utilizado uma biblioteca desenvolvida em c *intelfpgaup/video.h* e um drive, ambos disponibilizados pela <a href="https://fpgacademy.org/courses.html">FPGAcademy</a>. O drive usa o arquivo */dev/video* para se comunicar, ao lê-lo é retornado uma *string* de caracteres "ccc rrr", na qual *ccc* é o número de colunas na tela VGA, e *rrr* é o número de linhas. Além disso o drive tem suporte aos seguintes comandos escritos no arquivo, *clear* e *pixel x,y cor*. O comando clear deve apagar a tela VGA definindo todos os pixels no buffer de pixels para a cor 0 (preto). O comando pixel deve definir o pixel na tela VGA nas coordenadas (x, y) para o valor da cor. A biblioteca trabalha em cima do drive, fazendo uso dessas funções básicas para fazer funções mais complexas.
 
 <a name="monitor"></a>
 <div align="center">
@@ -101,7 +101,16 @@ Dá biblioteca *intelfpgaup/video.h* foram utilizadas as seguintes funções:
 A biblioteca `accel.h` é responsável por lidar com aceleração e movimentação no jogo. Certifique-se de entender como integrar essas funcionalidades em seu código para um controle suave.
 
 ### `KEY.h` (por Nicassio)
-A biblioteca `KEY.h` oferece suporte para lidar com eventos de teclado. Consulte a documentação para entender como mapear e responder a teclas específicas.
+Para utilizar o botão como interface de entrada, presente no kitFPGA foi utilizada a biblioteca *intelfpgaup/key.h* e um drive, ambos disponibilizados pela <a href="https://fpgacademy.org/courses.html">FPGAcademy</a>, mais especificamente no Lab 3: Character Device Drivers.O drive usa o arquivo */dev/KEY*, que serve para identificar o estado dos botões de pressão do kit, para realizar uma melhor utilização do driver foram feitas algumas funções que serão listadas a seguir: 
+
+#### Funções Utilizadas
+
+Dá biblioteca *intelfpgaup/key.h* foram utilizadas as seguintes funções:
+- **key_open():** Solicita o acesso a /dev/key, ao SO da placa para que tenha acesso por meio de arquivos, retornando 1 no sucesso e ou 0 na falha.
+- **key_read(int * /*data*/):** lê o estado dos botões de pressão através do registrador de captura de borda, modificando o valor de data para 0 caso nenhum botão tenha sido pressionado, ou retornando o número do botão que foi pressionado, variando de 0 a 3 na variável data. 
+ **key_close(int * /*data*/):**Fecha o arquivo /dev/key.
+ 
+
 
 ## Solução Geral
 <div align="center">
