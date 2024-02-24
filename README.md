@@ -108,7 +108,7 @@ Para utilizar o botão como interface de entrada, presente no kitFPGA foi utiliz
 Dá biblioteca *intelfpgaup/key.h* foram utilizadas as seguintes funções:
 - **key_open():** Solicita o acesso a /dev/key, ao SO da placa para que tenha acesso por meio de arquivos, retornando 1 no sucesso ou 0 na falha.
 - **key_read(int * /*data*/):** lê o estado dos botões de pressão através do registrador de captura de borda, modificando o valor de data para 0 caso nenhum botão tenha sido pressionado, ou retornando o número do botão que foi pressionado, variando de 0 a 3 na variável data. 
-- **key_close(int * /*data*/):**Fecha o arquivo /dev/key.
+- **key_close(int * /*data*/):** Fecha o arquivo /dev/key.
  
 
 
