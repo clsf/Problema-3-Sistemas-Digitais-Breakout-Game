@@ -11,7 +11,16 @@ Problema 3 da disciplina de sistemas digitais - Breakout Game em C
 - Thiago Jesus
 
 ## Introdução
+O projeto foi baseado no desenvolvimento do Jogo "Breakout", utilizando como plataforma o DE1-Soc, este desafio que visa o aprendizado, com o a obtenção do conhecimento para programar na linguagem C para um processador que possui a arquitetura ARM.Aliado ao fato de incentivar a utilização das interfaces presente no kit FPGA DE1-Soc, como os botões e o acelerômetro, que servirão como controles para o jogo. 
 
+O Desenvolvimento do jogo foi feito com determinados requisitos.Ser implementado exclusivamente em linguagem C utilizando apenas os componentes disponíveis na placa DE1-SoC, Utilizando a interface VGA para Visualização através de um monitor CRT. 
+
+<div align="center">
+  <img src="/img/Interface_Hardware.drawio.png" alt="Fluxograma do hardware">
+   <p>
+    Fluxograma do hardware
+    </p>
+</div>
 
 ## Recursos
 O Projeto X apresenta os seguintes recursos:
