@@ -100,7 +100,7 @@ Dá biblioteca *intelfpgaup/video.h* foram utilizadas as seguintes funções:
 ### `accel.h` (por Nirvan)
 A biblioteca `accel.h` é responsável por lidar com aceleração e movimentação no jogo. Certifique-se de entender como integrar essas funcionalidades em seu código para um controle suave.
 
-### `KEY.h` (por Nicassio)
+### `KEY.h` 
 Para utilizar o botão como interface de entrada, presente no kitFPGA foi utilizada a biblioteca *intelfpgaup/key.h* e um drive, ambos disponibilizados pela <a href="https://fpgacademy.org/courses.html">FPGAcademy</a>, mais especificamente no Lab 3: Character Device Drivers.O drive usa o arquivo */dev/KEY*, que serve para identificar o estado dos botões de pressão do kit, para realizar uma melhor utilização do driver foram feitas algumas funções que serão listadas a seguir: 
 
 #### Funções Utilizadas
@@ -108,7 +108,7 @@ Para utilizar o botão como interface de entrada, presente no kitFPGA foi utiliz
 Dá biblioteca *intelfpgaup/key.h* foram utilizadas as seguintes funções:
 - **key_open():** Solicita o acesso a /dev/key, ao SO da placa para que tenha acesso por meio de arquivos, retornando 1 no sucesso ou 0 na falha.
 - **key_read(int * /*data*/):** lê o estado dos botões de pressão através do registrador de captura de borda, modificando o valor de data para 0 caso nenhum botão tenha sido pressionado, ou retornando o número do botão que foi pressionado, variando de 0 a 3 na variável data. 
-- **key_close(int * /*data*/):** Fecha o arquivo /dev/key.
+- **key_close():** Fecha o arquivo /dev/key.
  
 
 
