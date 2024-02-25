@@ -206,8 +206,21 @@ Para fazer o movimento da bola na tela foi criada uma *struct Ball* que possui a
 
 **ball_move(Ball \*ball):** Esta função move a bola na tela, alterando suas coordenadas *(x1, y1)* e *(x2, y2)* de acordo com sua velocidade *(acel_x, acel_y)*. Essa função é responsável por fazer a bola se movimentar pela tela em cada quadro de animação do jogo.
 
-## Blocos (Geração) (por Nicassio)
-Esta seção cobre a lógica por trás da geração de blocos no jogo. Inclua detalhes sobre como os blocos são criados, organizados e destruídos durante o jogo.
+## Blocos 
+Para criação dos blocos para o jogo, foi feito um array contendo todos os blocos que aparecerão na tela, e partir das informações coletadas no array os blocos são apresentados no monitor CRT, para isso foi necessário a criação de uma estrutura e algumas funções que serão mostradas a seguir. 
+
+### Definindo Estrutura 
+Foi feito uma struct que contém os dados necessários para construção do bloco sendo eles: 
+- x1Bloco: coordenada x do canto superior esquerdo do bloco.
+- x2Bloco: coordenada x do canto inferior direito do bloco.
+- y1Bloco: coordenada y do canto superior esquerdo do bloco.
+- y2Bloco: coordenada y do canto inferior direito do bloco.
+- ativo: status de ativação do bloco.
+- cor: cor do bloco. 
+
+### 
+
+
 
 ## Paredes (por Luis)
 Explica a função e a implementação das paredes no jogo, se houver. Isso pode incluir paredes que afetam o movimento da bola ou outras mecânicas de jogo.
