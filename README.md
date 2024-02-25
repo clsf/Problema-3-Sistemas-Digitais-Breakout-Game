@@ -50,7 +50,7 @@ O Projeto apresenta os seguintes recursos:
   - Escrito na linguagem de programação C.
 
 ## Como Utilizar
-Para executar este projeto é preciso primeiro estar com o código em mãos, que pode ser obtido tanto clonando este repositório quanto baixando diretamente o arquivo `main.c`, após isso, siga os passos abaixo:
+Para executar este projeto é preciso primeiro estar com o código em mãos, que pode ser obtido tanto clonando este repositório quanto baixando diretamente o arquivo `Breakout.c`, após isso, siga os passos abaixo:
 1. **Estabeleca a Conexão SSH:**
     - Abra o terminal no seu computador.
     - Executar o seguinte comando para estabelecer uma conexão SSH com a DE1-SoC:
@@ -71,11 +71,11 @@ Para executar este projeto é preciso primeiro estar com o código em mãos, que
 3. **Compilar e Executar**
   - Execute o seguinte comando:
     ```bash
-    gcc -o main main.c -lintelfpgaup
+    gcc -o Breakout Breakout.c -lintelfpgaup
     ```
     - `gcc`: é o comando para chamar o compilador GCC.
-    - `-o main`: especifica o nome do arquivo de saída após a compilação. 
-    - `main.c`: é o nome do arquivo fonte em C que será compilado. 
+    - `-o Breakout`: especifica o nome do arquivo de saída após a compilação. 
+    - `Breakout.c`: é o nome do arquivo fonte em C que será compilado. 
     - O parâmetro `-l` no comando de compilação indica ao linker que vincule o programa com a biblioteca `intelfpgaup`.
   
 ## Libs intelfpgaup
@@ -197,12 +197,14 @@ Outro ponto importante é a verificação da posição da bola em relação à b
 
 Após todas essas verificações, a tela é continuamente atualizada para refletir visualmente as alterações no estado do jogo. Esse ciclo de verificação e atualização garante uma experiência dinâmica e interativa para o jogador, proporcionando um fluxo suave e envolvente durante o jogo.
 
-## Paddle (Movimento) (por Nirvan)
-Descreve como o movimento do paddle é implementado, incluindo as funções disponíveis e como integrá-las ao jogo.
+## Paddle (Movimento)
+Para fazer a paddle(barra controlada pelo jogador) e a lógica que por trás de sua movimentação, foram desenvolvidas duas structs e uma função, a primeira struct é a *Paddle*, que possui as posições para que seja desenhada um bloco na tela (x1, y1) e (x2, y2), assim como seu tamanha, *width* e sua cor, a segunda struct, *WallPaddle*, existe com o objetivo de limitar a movimentação da paddle na tel, possuindo apenas seus limites, *limitLeft* e *limitRight*, que representam valores de x.<br />
+A função, **movePaddle(Paddle \*player, WallPaddle \*wall)**, é onde ocorre a lógica de movimentação, ela utiliza a função *accel_read* para ler o valor de *x* do acelerômetro e divide esse valor gerando a aceleração em que a paddle vai se movimentar na tela. Assim, ela atualiza a posição da paddle de acordo com a velocidade obtida e checa a posição futura da paddle para caso ela esteja nos limites da tela definidos pelo parâmetro **wall* receido pela função, não haja movimento. Por fim, redesenha a barra na tela com a nova posição da paddle. 
+
 
 ## Bola (Movimento) (por Luis)
 
-Para fazer o movimento da bola na tela foi criada uma *struct Ball* que possui as posições de cada um dos pontos usados para construção da bola na tela *(x1, y1)* e *(x2,y2)*, alem disso essa estrutura também possui a aceleração de *x1* e a aceleração de *x2* que são utilizados como parametros para o moviment da bola, eles definem o angulo, direção e velocidade. Para isso foi utilizado a função abaixo:
+Para fazer o movimento da bola na tela foi criada uma *struct Ball* que possui as posições de cada um dos pontos usados para construção da bola na tela *(x1, y1)* e *(x2,y2)*, alem disso essa estrutura também possui a aceleração de *x1* e a aceleração de *x2* que são utilizados como parametros para o movimento da bola, eles definem o angulo, direção e velocidade. Para isso foi utilizado a função abaixo:
 
 **ball_move(Ball \*ball):** Esta função move a bola na tela, alterando suas coordenadas *(x1, y1)* e *(x2, y2)* de acordo com sua velocidade *(acel_x, acel_y)*. Essa função é responsável por fazer a bola se movimentar pela tela em cada quadro de animação do jogo.
 

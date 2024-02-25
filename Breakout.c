@@ -251,18 +251,16 @@ int colide(Ball *ball, Wall *wall) {
     return 0;
 }
 
-void drawPaddle(Paddle *player){
-    video_box(player->x1, player->y1, player->x2, player->y2, player->color); // Desenha uma caixa preenchida
-}
-
-
+// Função responsável pela movimentação da paddle(barra)
 void movePaddle(Paddle *player, WallPaddle *wall){
 
     int accel_x, accel_y, accel_z, accel_ready, accel_tap, accel_dtap, accel_msg;
     
-    
+    // Recebe o x através do acelerometro e divide para obter a aceleração da barra
     accel_read(&accel_ready, &accel_tap, &accel_dtap, &accel_x, &accel_y, &accel_z, &accel_msg);
     accel_x = accel_x/12;
+    // verifica se a paddle atingiu os limites da tela
+    // caso não, atualiza a posição da paddle com a aceleração
     if(player->x1 + accel_x  <= wall->limitLeft || player->x2 + accel_x >= wall->limitRight){
         player->x1 += 0;
         player->x2 += 0;
@@ -274,12 +272,15 @@ void movePaddle(Paddle *player, WallPaddle *wall){
 	video_box((*player).x1, (*player).y1, (*player).x2, (*player).y2, (*player).color); // Desenha uma caixa preenchida
 }
 
+// função que verifica a colisão da bola com a paddle
 void colidePaddle(Ball *ball, Paddle *paddle) {
     int ball_x1 = ball->pos_x1 + ball->acel_x;
     int ball_y1 = ball->pos_y1 + ball->acel_y;
     int ball_x2 = ball->pos_x2 + ball->acel_x;
     int ball_y2 = ball->pos_y2 + ball->acel_y;
     
+    // verifica se a posição futura da bola colidirá com a paddle
+    // caso colida inverte a aceleração
     if (((ball_x1 >= paddle->x1 && ball_x2 <= paddle->x2)||(ball->pos_x1 >= paddle->x1 && ball->pos_x2 <= paddle->x2)) && ball_y1 >= paddle->y1 && ball_y2 <= paddle->y2) {
         if (ball->pos_x1 >= paddle->x1 && ball->pos_x2 <= paddle->x2) {
             ball->acel_y = -ball->acel_y;
