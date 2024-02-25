@@ -221,11 +221,11 @@ Foi feito uma struct que contém os dados necessários para construção do bloc
 - (short)cor: cor do bloco. 
 
 ### Funções 
-**setBloco(int x1, int x2, int y1, int y2, short color):** Função responsável por criar e retornar uma struct de Bloco com as informações passadas com o campo ativo = 1. 
-**CriarBlocos(Bloco* blocos):** Função que recebe um ponteiro de um array de Blocos com uma quantidade especifica pré-difinida, e o preenche com blocos com coordenadas, cores e dimensões predefinidas utilizando a função 'setBloco'. 
-**desenharBlocoVGA(Bloco* Blocos):**Função desenha um bloco no display VGA usando a função **video_box** se o bloco estiver ativo.
-**desenharBlocos(Bloco* Blocos):**Função itera por um array de blocos e chama desenharBlocoVGA para desenhar cada bloco no display VGA. 
-**ativar_blocos(Bloco *blocos):**Função que itera por um array de blocos e muda o campo ativo de todos eles para 1.
+- **setBloco(int x1, int x2, int y1, int y2, short color):** Função responsável por criar e retornar uma struct de Bloco com as informações passadas com o campo ativo = 1. 
+- **CriarBlocos(Bloco* blocos):** Função que recebe um ponteiro de um array de Blocos com uma quantidade especifica pré-difinida, e o preenche com blocos com coordenadas, cores e dimensões predefinidas utilizando a função 'setBloco'. 
+- **desenharBlocoVGA(Bloco* Blocos):**Função desenha um bloco no display VGA usando a função **video_box** se o bloco estiver ativo.
+- **desenharBlocos(Bloco* Blocos):**Função itera por um array de blocos e chama desenharBlocoVGA para desenhar cada bloco no display VGA. 
+- **ativar_blocos(Bloco *blocos):**Função que itera por um array de blocos e muda o campo ativo de todos eles para 1.
 
 ### Geração e funcionamento
 Para realizar a Geração dos blocos, primeiro é criado o array Bloco, a partir de uma quatidade total de blocos que irá existir no jogo, após isso é passado para a função **CriarBlocos**, e após isso tem todos os blocos prontos para serem gerados.Com os blocos prontos o array é passado para a função **desenharBlocos** que servirá para desenhar todos os blocos no display vga para que posteriormente sejam mostrados na tela. 
