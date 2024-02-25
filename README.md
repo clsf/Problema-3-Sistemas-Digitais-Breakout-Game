@@ -23,14 +23,61 @@ O Desenvolvimento do jogo foi feito com determinados requisitos.Ser implementado
 </div>
 
 ## Recursos
-O Projeto X apresenta os seguintes recursos:
+O Projeto apresenta os seguintes recursos:
 
-- **Clock:** Mantenha-se no controle do tempo com o relógio integrado.
-- **Libs intelfpgaup:** Biblioteca que oferece funcionalidades essenciais para o desenvolvimento do jogo, incluindo drivers e controles.
+- **Placa de Desenvolvimento**: DE1-Soc
+  - Processador Intel® Cyclone V SoC FPGA
+  - 85k logic-element FPGA
+  - ARM Cortex A9 MPCORE
+  - 1 GB DDR, 64 MB SDRAM
+  - Armazenamento via cartão microSD
+  - Possui quatro fontes de clock disponíveis, cada uma operando a uma frequência de 50MHz, todas geradas a partir de um mesmo gerador de clock. A placa também oferece suporte a clock adicional por meio de geradores de clock externos e osciladores.
+<div align="center">
+  <img src="/img/DE1-SoC.jpg" alt="DE1-SoC">
+   <p>
+    DE1-SoC.
+    </p>
+</div>
+
+- **Drivers de componentes utilizados:**
+  - `KEY`: Usado para acessar a porta dos botões.
+  - `video`: Usado para acessar a porta de saída de vídeo VGA.
+  - `accel`: Usado para acessar a porta do acelerômetro 3D.
+
+- **Monitor CRT**
+  - Conectado a placa através de uma interface VGA.
+- **Software**:
+  - Escrito na linguagem de programação C.
 
 ## Como Utilizar
-Instruções sobre como baixar, compilar e executar o jogo podem ser encontradas nesta seção. Certifique-se de revisar as dependências e os pré-requisitos antes de iniciar.
-
+Para executar este projeto é preciso primeiro estar com o código em mãos, que pode ser obtido tanto clonando este repositório quanto baixando diretamente o arquivo `main.c`, após isso, siga os passos abaixo:
+1. **Estabeleca a Conexão SSH:**
+    - Abra o terminal no seu computador.
+    - Executar o seguinte comando para estabelecer uma conexão SSH com a DE1-SoC:
+      ```bash
+      ssh usuario@ip_da_de1_soc
+      ```
+    - Em caso de uso na UEFS substituir "usuario" por "aluno" e "ip_da_de1_soc" pelo endereço IP da DE1-SoC que fica identificado na placa.
+2. **Transferir Arquivos:** 
+    - Mover os arquivos do projeto para a DE1-SoC utilizando o comando:
+      ```bash
+      scp caminho/do/arquivo usuario@ip_da_de1_soc:/caminho/destino
+      ```
+    - Substituir "caminho/do/arquivo" pelo caminho local do arquivo e "caminho/destino" pelo diretório de destino na DE1-SoC.
+    - Navegar até o diretório onde os arquivos estão localizados:
+      ```bash
+      cd /caminho/do/projeto
+      ```
+3. **Compilar e Executar**
+  - Execute o seguinte comando:
+    ```bash
+    gcc -o main main.c -lintelfpgaup
+    ```
+    - `gcc`: é o comando para chamar o compilador GCC.
+    - `-o main`: especifica o nome do arquivo de saída após a compilação. 
+    - `main.c`: é o nome do arquivo fonte em C que será compilado. 
+    - O parâmetro `-l` no comando de compilação indica ao linker que vincule o programa com a biblioteca `intelfpgaup`.
+  
 ## Libs intelfpgaup
 
 Para estabelecer a comunicação entre o software e o hardware, utilizamos drivers que atuam como uma ponte, utilizando a biblioteca intelfpga. Esses drivers consistem em um conjunto de rotinas ou funções que possibilitam a interação do programa com os componentes específicos da FPGA DE1-SoC, como o acelerômetro, botões e vídeo. Essa abordagem simplifica o processo de leitura e escrita nos registradores, assim como nas configurações desses componentes.
