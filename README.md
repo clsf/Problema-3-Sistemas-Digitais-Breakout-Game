@@ -144,8 +144,31 @@ Dá biblioteca *intelfpgaup/video.h* foram utilizadas as seguintes funções:
 
 - **video_erase():** Apaga os textos na tela.
 
-### `accel.h` (por Nirvan)
-A biblioteca `accel.h` é responsável por lidar com aceleração e movimentação no jogo. Certifique-se de entender como integrar essas funcionalidades em seu código para um controle suave.
+### `accel.h`
+Para coletar e poder utilizar os dados do acelerômetro ADXL345 presente no kit de desenvolvimento, foi utilizado a biblioteca *intelfpgaup/accel.h* e um driver, disponibilizados pela <a href="https://fpgacademy.org/courses.html">FPGAcademy</a>. Os dados medidos pelo acelerômetro são escritos no arquivo arquivo */dev/accel* criado pelo driver. Quando um usuário lê este arquivo, ele deve receber os dados do acelerômetro no seguinte formato:
+
+```bash
+R XXXX YYYY ZZZZ SS
+```
+
+Onde:
+
+- `R` é 1 se novos dados do acelerômetro estiverem disponíveis.
+- `XXXX`, `YYYY` e `ZZZZ` são os valores de aceleração nos eixos x, y e z, respectivamente.
+- `SS` é o fator de escala em mg/LSB(miligauss por menor unidade de bits) para os dados de aceleração.
+
+Assim, a leitura do arquivo */dev/accel* fornece informações atualizadas sobre a aceleração medida nos eixos x, y e z, juntamente com o fator de escala necessário para interpretar esses dados corretamente.
+
+#### Funções Utilizadas
+
+Dá biblioteca *intelfpgaup/accel.h* foram utilizadas as seguintes funções:
+- **accel_open():** Solicita o acesso a /dev/accel, retornando 1 no sucesso ou 0 na falha.
+- **accel_init():** Reinicia o acelerômetro.
+- **accel_calibrate():** Executa uma rotina de calibração.
+- **accel_format():** Define o formato dos dados para resolução fixa de 10 bits (F = 0), ou resolução completa (F = 1), com um intervalo G = +/- 2, 4, 8 ou 16 g (grávitons).
+- **accel_read():** Lê os dados do acelerômetro no */dev/accel*, recebendo os dados de aceleração nas três direções, *x*, *y* e *z*, um sinal de mudança súbita de aceleração único ou duplo, *tap* e *double-tap*, o fator de aceleração, *mg_per_lsb*, e um sinal de que os dados estão prontos, *ready*. 
+- **accel_close():** Fecha o arquivo */dev/accel*.
+
 
 ### `KEY.h` 
 Para utilizar o botão como interface de entrada, presente no kitFPGA foi utilizada a biblioteca *intelfpgaup/key.h* e um drive, ambos disponibilizados pela <a href="https://fpgacademy.org/courses.html">FPGAcademy</a>, mais especificamente no Lab 3: Character Device Drivers.O drive usa o arquivo */dev/KEY*, que serve para identificar o estado dos botões de pressão do kit, para realizar uma melhor utilização do driver foram feitas algumas funções que serão listadas a seguir: 
