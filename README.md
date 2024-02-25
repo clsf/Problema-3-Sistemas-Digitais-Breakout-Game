@@ -177,7 +177,7 @@ Para utilizar o botão como interface de entrada, presente no kitFPGA foi utiliz
 
 Dá biblioteca *intelfpgaup/key.h* foram utilizadas as seguintes funções:
 - **key_open():** Solicita o acesso a /dev/key, ao SO da placa para que tenha acesso por meio de arquivos, retornando 1 no sucesso ou 0 na falha.
-- **key_read(int * /*data*/):** lê o estado dos botões de pressão através do registrador de captura de borda, modificando o valor de data para 0 caso nenhum botão tenha sido pressionado, ou retornando o número do botão que foi pressionado, variando de 0 a 3 na variável data. 
+- **key_read(int * /*data*/):** lê o estado dos botões de pressão através do registrador de captura de borda, modificando o valor de data para 0 caso nenhum botão tenha sido pressionado, ou retornando o número do botão que foi pressionado, variando entre o key 3(1000 em binário e 8 em decimal), key 2(0100 em binário e 4 em decimal), key 1(0010 em binário e 2 em decimal) e key 0(0001 em binário e 1 em decimal). 
 - **key_close():** Fecha o arquivo /dev/key.
  
 
@@ -233,9 +233,6 @@ Para realizar a Geração dos blocos, primeiro é criado o array Bloco, a partir
 
 A colisão da bola com o bloco faz com que o estado ativo dele se torne 0(Será explicado Posteriormente), fazendo com que ele não seja mostrado na tela, para mostrar os blocos novamente após a vitória ou reinicio do jogo, foi feita a função **ativar_blocos** que muda o campo ativo de cada bloco para 1 novamente.
 
-## Paredes (por Luis)
-Explica a função e a implementação das paredes no jogo, se houver. Isso pode incluir paredes que afetam o movimento da bola ou outras mecânicas de jogo.
-
 ## Colisão (por Luis)
 A colisão entre a bola e os demais objetos presentes na tela, paredes, paddle e blocos foi feita comparando a posição atual da bola em relação aos outros. Quando a bola se encontra dentro dos limites de outro objeto, ou seja quando seu *(x1, y1)* e *(x2, y2)* estvam entre os *(x1, y1)* e *(x2, y2)* do outro objeto a colisão acontece. Para isso foram utilizadas as funções a seguir:
 
@@ -247,8 +244,19 @@ A colisão entre a bola e os demais objetos presentes na tela, paredes, paddle e
 
 **colide_bloco(Ball\* ball, Bloco\* bloco):** Esta função verifica se houve uma colisão entre a bola e um bloco específico. Ela calcula as novas coordenadas da bola após o próximo movimento e verifica se a bola colidiu com o bloco. Se ocorrer uma colisão com o bloco ativo, a função desativa o bloco e retorna 1 para indicar a colisão.
 
-## Botões (Pause, Continue, Restart) 
-Explica como os botões de pause, continue e restart são implementados e como eles interagem com o fluxo do jogo.
+## Botão 
+Para a implementação dos estados de jogo (Start, Pause, Continue, Restart) foi utilizado apenas um botão chamado key 3 no kit fpga, que tem funções diferentes dependendo do estado em que o jogo se encontra, a leitura do botão é feita a partir da função **KEY_read** da biblioteca , *intelfpgaup/key.h* algo que só funciona devido ao clock do processador ser rápido o suficiente para detectar o pressionamento do botão em qualquer momento do looping principal.
+
+### Start 
+No inicio, o jogo fica na situação de start onde o código fica preso em um looping, mostrando uma mensagem de "Aperte Key 3 para iniciar", esperando que o botão *key 3* seja pressionado ou seja, se valor do botão é igual a 8, utilizando a função **KEY_read** para verificar, caso isso aconteça sai do looping e inicia o jogo .
+
+### Pause e Continue 
+Dentro do jogo, ainda ocorre a verificação dentro do looping do jogo do estado do botão através de **KEY_read**,esperando que o botão *key 3* seja pressionado ou seja, se valor do botão é igual a 8, caso isso aconteça, uma variavél de controle pause se torna 1, e com ela igual a 1 o código fica preso em looping  com o jogo parado, esperando que o mesmo botão seja pressionado novamente para sair do looping fazendo com que o jogo volte continue de onde parou e a váriavel pause se torne 0 novamente. 
+
+### Restart 
+O restart possui a mesma lógica de (Pause e Continue), para manter o jogo preso dentro do looping e também para sair dele utilizando a variável pause, a única mudança são as duas condições de inicio. A primeira está relacionada a variável game_over, que mostra a mensagem de game over quando player deixa a bola passar do paddle e perde, mostrando a mensagem de game over e a segunda está relacionada ao player ganhar o jogo ou seja, quando todas as bolas são destruidas, a cada vez que sai de uma dessas condições as bolas são reconstruidas através da função **ativar_blocos**.
+
+
 
 ## Textos (Mensagens e Pontuação)
 As mensagens no jogo são geradas por meio da estrutura mensagem, que engloba os atributos x, y, mensagem e ativa. As variáveis x e y indicam a posição na tela em que a mensagem será exibida, enquanto a variável mensagem armazena a informação a ser apresentada. O atributo ativa determina se a mensagem deve ser exibida ou não. A lógica de exibição é controlada pelo método "exibirMensagem", que verifica a condição de ativação antes de utilizar a função para escrever a mensagem na tela.
