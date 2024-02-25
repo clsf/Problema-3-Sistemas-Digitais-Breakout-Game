@@ -11,12 +11,10 @@ Lógica dos blocos
 */
 
 #define WIDTH 320
-#define HEIGHT 240
 #define BLOCKWIDTH 34
 #define BLOCKHEIGHT 10 
 
 
-char matriz[HEIGHT][WIDTH]; 
 int quantidadeBlocosHorizontal = (WIDTH - 14)/BLOCKWIDTH;  //quantidade de blocos em cada linha
 int quantidadeBlocosVertical = 7; //quantidade de blocos Verticalmente ou em cada coluna
 int quantidadeBlocosGlobal;
@@ -82,6 +80,7 @@ typedef struct {
     short color;
 } Wall;
 
+//Estrutura do Bloco
 typedef struct 
 {
     int x1Bloco;  
@@ -112,7 +111,7 @@ void exibirPontuacao(struct Pontuacao *pontuacao) {
     video_text(pontuacao->x, pontuacao->y, mensagem);
 }
 
-
+//Função responsável por criar um bloco a partir de parâmetros recebidos
 Bloco setBloco(int x1, int x2, int y1, int y2, short color){ 
 
     Bloco B; 
@@ -126,14 +125,15 @@ Bloco setBloco(int x1, int x2, int y1, int y2, short color){
     return B;
 };
 
-
-void desenharBlocoVGA(Bloco b){ //Função que desenha blocos na VGA
+//Função auxiliar que verifica se o bloco está ativo para colocar as informações dentro do buffer para ser mostrado na tela
+void desenharBlocoVGA(Bloco b){ 
 	
    if( b.ativo ){
     video_box(b.x1Bloco, b.y1Bloco, b.x2Bloco, b.y2Bloco, b.cor);
    };
 };
 
+//Função responsável colocar direcionar todos os blocos de um array para uma função coloca as informações do bloco em um buffer para ser mostrado na tela 
 void desenharBlocos(Bloco* Blocos){
     int i = 0;
     for (i; i < quantidadeBlocosGlobal; i++){
@@ -143,20 +143,20 @@ void desenharBlocos(Bloco* Blocos){
     }
 };
 
+//Função responspavel por criar o array de blocos
 void CriarBlocos(Bloco* blocos){
 
     int coordXInicial = 0 + 7; // coordenada x que inicia a linha dos blocos
     int coordXFinal =  WIDTH - 7; // coordenada x que termina a linha dos blocos
     int coordYInicial = 0 + 6; //coordenada y onde se inicia a coluna de blocos
     int coordYFinal =  coordYInicial + (quantidadeBlocosVertical * BLOCKHEIGHT); //coordenada y onde termina a coluna de blocos
-    quantidadeBlocosGlobal = quantidadeBlocosHorizontal * quantidadeBlocosVertical;
 
     Bloco B1;
     int indexBlocos = 0;
     int i = coordYInicial;
     int j = coordXInicial;
     int linhas = 0; 
-    short cores[7] = {video_PINK, video_RED, video_ORANGE, video_YELLOW, video_GREEN, video_CYAN, video_BLUE};
+    short cores[7] = {video_PINK, video_RED, video_ORANGE, video_YELLOW, video_GREEN, video_CYAN, video_BLUE}; //Array de cores para os blocos
     int l, m;
 
     for( i ; i < coordYFinal + (quantidadeBlocosVertical); i += BLOCKHEIGHT + 1){ //For das posições verticais dos blocos
@@ -207,6 +207,7 @@ int colide_bloco(Ball* ball, Bloco* bloco) {
     return 0;
 }
 
+//Função responsável por mudar o status de todos os blocos para ativo para que sejam mostrados no monitor
 void ativar_blocos(Bloco *blocos) {
     int i = 0;
     for (i; i < quantidadeBlocosGlobal; i++){
