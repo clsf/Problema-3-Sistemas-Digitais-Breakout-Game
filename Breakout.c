@@ -383,7 +383,6 @@ int main() {
         video_text(char_x/2 - 10, char_y/2, "Aperte Key 3 para iniciar");
         video_show();
         KEY_read(&key_data);
-        //printf("Botão: %i\n", key_data);
     }
     video_erase();
 
@@ -406,7 +405,6 @@ int main() {
             pause = 1;
             while(pause == 1){
                 KEY_read(&key_data);
-                //printf("Botão: %i\n", key_data);
                 if(key_data == 8){
                     pause = 0;
                 }
@@ -425,7 +423,6 @@ int main() {
                 video_clear();
                 exibirMensagem(&game_over_msg);
                 KEY_read(&key_data);
-                //printf("Botão: %i\n", key_data);
                 if(key_data == 8){
                     pause = 0;
                 }
