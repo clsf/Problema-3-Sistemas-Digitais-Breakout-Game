@@ -247,7 +247,7 @@ A colisão entre a bola e os demais objetos presentes na tela, paredes, paddle e
 
 **colide_bloco(Ball\* ball, Bloco\* bloco):** Esta função verifica se houve uma colisão entre a bola e um bloco específico. Ela calcula as novas coordenadas da bola após o próximo movimento e verifica se a bola colidiu com o bloco. Se ocorrer uma colisão com o bloco ativo, a função desativa o bloco e retorna 1 para indicar a colisão.
 
-## Botões (Pause, Continue, Restart) (por Nicassio)
+## Botões (Pause, Continue, Restart) 
 Explica como os botões de pause, continue e restart são implementados e como eles interagem com o fluxo do jogo.
 
 ## Textos (Mensagens e Pontuação)
