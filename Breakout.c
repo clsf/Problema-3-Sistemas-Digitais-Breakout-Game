@@ -143,7 +143,7 @@ void desenharBlocos(Bloco* Blocos){
     }
 };
 
-//Função responspavel por criar o array de blocos
+//Função responsável por criar o array de blocos
 void CriarBlocos(Bloco* blocos){
 
     int coordXInicial = 0 + 7; // coordenada x que inicia a linha dos blocos
