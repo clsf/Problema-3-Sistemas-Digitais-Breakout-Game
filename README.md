@@ -213,16 +213,24 @@ Para criação dos blocos para o jogo, foi feito um array contendo todos os bloc
 
 ### Definindo Estrutura 
 Foi feito uma struct que contém os dados necessários para construção do bloco sendo eles: 
-- x1Bloco: coordenada x do canto superior esquerdo do bloco.
-- x2Bloco: coordenada x do canto inferior direito do bloco.
-- y1Bloco: coordenada y do canto superior esquerdo do bloco.
-- y2Bloco: coordenada y do canto inferior direito do bloco.
-- ativo: status de ativação do bloco.
-- cor: cor do bloco. 
+- (int)x1Bloco: coordenada x do canto superior esquerdo do bloco.
+- (int)x2Bloco: coordenada x do canto inferior direito do bloco.
+- (int)y1Bloco: coordenada y do canto superior do bloco.
+- (int)y2Bloco: coordenada y do canto inferior do bloco.
+- (int)ativo: status de ativação do bloco(0 ou 1).
+- (short)cor: cor do bloco. 
 
-### 
+### Funções 
+**setBloco(int x1, int x2, int y1, int y2, short color):** Função responsável por criar e retornar uma struct de Bloco com as informações passadas com o campo ativo = 1. 
+**CriarBlocos(Bloco* blocos):** Função que recebe um ponteiro de um array de Blocos com uma quantidade especifica pré-difinida, e o preenche com blocos com coordenadas, cores e dimensões predefinidas utilizando a função 'setBloco'. 
+**desenharBlocoVGA(Bloco* Blocos):**Função desenha um bloco no display VGA usando a função **video_box** se o bloco estiver ativo.
+**desenharBlocos(Bloco* Blocos):**Função itera por um array de blocos e chama desenharBlocoVGA para desenhar cada bloco no display VGA. 
+**ativar_blocos(Bloco *blocos):**Função que itera por um array de blocos e muda o campo ativo de todos eles para 1.
 
+### Geração e funcionamento
+Para realizar a Geração dos blocos, primeiro é criado o array Bloco, a partir de uma quatidade total de blocos que irá existir no jogo, após isso é passado para a função **CriarBlocos**, e após isso tem todos os blocos prontos para serem gerados.Com os blocos prontos o array é passado para a função **desenharBlocos** que servirá para desenhar todos os blocos no display vga para que posteriormente sejam mostrados na tela. 
 
+A colisão da bola com o bloco faz com que o estado ativo dele se torne 0(Será explicado Posteriormente), fazendo com que ele não seja mostrado na tela, para mostrar os blocos novamente após a vitória ou reinicio do jogo, foi feita a função **ativar_blocos** que muda o campo ativo de cada bloco para 1 novamente.
 
 ## Paredes (por Luis)
 Explica a função e a implementação das paredes no jogo, se houver. Isso pode incluir paredes que afetam o movimento da bola ou outras mecânicas de jogo.
