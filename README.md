@@ -86,7 +86,7 @@ Através do controle proporcionado pelos drivers, conseguimos gerenciar eficient
 
 A biblioteca "intelfpgaup" desempenhou um papel crucial, servindo como a ferramenta necessária para abstrair muitos detalhes complexos. Essa abstração evitou a necessidade de realizar configurações, leituras e inicializações dos periféricos em níveis mais baixos. Dessa forma, a implementação do jogo foi simplificada e tornada mais acessível, permitindo o foco nas lógicas do jogo em si, em vez de detalhes específicos da FPGA.
 
-### `video.h` (por Luis)
+### `video.h`
 
 
 Para utilização do [monitor](#monitor), como interface de saida do projeto, atraves de um cabo VGA conectado a DE1-SoC foi utilizado uma biblioteca desenvolvida em c *intelfpgaup/video.h* e um drive, ambos disponibilizados pela <a href="https://fpgacademy.org/courses.html">FPGAcademy</a>. O drive usa o arquivo */dev/video* para se comunicar, ao lê-lo é retornado uma *string* de caracteres "ccc rrr", na qual *ccc* é o número de colunas na tela VGA, e *rrr* é o número de linhas. Além disso o drive tem suporte aos seguintes comandos escritos no arquivo, *clear* e *pixel x,y cor*. O comando clear deve apagar a tela VGA definindo todos os pixels no buffer de pixels para a cor 0 (preto). O comando pixel deve definir o pixel na tela VGA nas coordenadas (x, y) para o valor da cor. A biblioteca trabalha em cima do drive, fazendo uso dessas funções básicas para fazer funções mais complexas.
@@ -202,7 +202,7 @@ Para fazer a paddle(barra controlada pelo jogador) e a lógica que por trás de 
 A função, **movePaddle(Paddle \*player, WallPaddle \*wall)**, é onde ocorre a lógica de movimentação, ela utiliza a função *accel_read* para ler o valor de *x* do acelerômetro e divide esse valor gerando a aceleração em que a paddle vai se movimentar na tela. Assim, ela atualiza a posição da paddle de acordo com a velocidade obtida e checa a posição futura da paddle para caso ela esteja nos limites da tela definidos pelo parâmetro **wall* receido pela função, não haja movimento. Por fim, redesenha a barra na tela com a nova posição da paddle. 
 
 
-## Bola (Movimento) (por Luis)
+## Bola (Movimento) 
 
 Para fazer o movimento da bola na tela foi criada uma *struct Ball* que possui as posições de cada um dos pontos usados para construção da bola na tela *(x1, y1)* e *(x2,y2)*, alem disso essa estrutura também possui a aceleração de *x1* e a aceleração de *x2* que são utilizados como parametros para o movimento da bola, eles definem o angulo, direção e velocidade. Para isso foi utilizado a função abaixo:
 
@@ -233,7 +233,7 @@ Para realizar a Geração dos blocos, primeiro é criado o array Bloco, a partir
 
 A colisão da bola com o bloco faz com que o estado ativo dele se torne 0(Será explicado Posteriormente), fazendo com que ele não seja mostrado na tela, para mostrar os blocos novamente após a vitória ou reinicio do jogo, foi feita a função **ativar_blocos** que muda o campo ativo de cada bloco para 1 novamente.
 
-## Colisão (por Luis)
+## Colisão 
 A colisão entre a bola e os demais objetos presentes na tela, paredes, paddle e blocos foi feita comparando a posição atual da bola em relação aos outros. Quando a bola se encontra dentro dos limites de outro objeto, ou seja quando seu *(x1, y1)* e *(x2, y2)* estvam entre os *(x1, y1)* e *(x2, y2)* do outro objeto a colisão acontece. Para isso foram utilizadas as funções a seguir:
 
 **colide(Ball \*ball, Wall \*wall):** Esta função verifica se houve uma colisão entre a bola e uma parede. Ela calcula as novas coordenadas da bola após o próximo movimento (ball_x1, ball_y1, ball_x2, ball_y2) e verifica se a bola colidiu com a parede. Se ocorrer uma colisão retorna 1 para indicar a colisão.
