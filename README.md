@@ -233,9 +233,6 @@ Para realizar a Geração dos blocos, primeiro é criado o array Bloco, a partir
 
 A colisão da bola com o bloco faz com que o estado ativo dele se torne 0(Será explicado Posteriormente), fazendo com que ele não seja mostrado na tela, para mostrar os blocos novamente após a vitória ou reinicio do jogo, foi feita a função **ativar_blocos** que muda o campo ativo de cada bloco para 1 novamente.
 
-## Paredes (por Luis)
-Explica a função e a implementação das paredes no jogo, se houver. Isso pode incluir paredes que afetam o movimento da bola ou outras mecânicas de jogo.
-
 ## Colisão (por Luis)
 A colisão entre a bola e os demais objetos presentes na tela, paredes, paddle e blocos foi feita comparando a posição atual da bola em relação aos outros. Quando a bola se encontra dentro dos limites de outro objeto, ou seja quando seu *(x1, y1)* e *(x2, y2)* estvam entre os *(x1, y1)* e *(x2, y2)* do outro objeto a colisão acontece. Para isso foram utilizadas as funções a seguir:
 
